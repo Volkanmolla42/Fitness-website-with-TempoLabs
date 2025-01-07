@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "./navigation/Navbar";
 import HeroSection from "./hero/HeroSection";
 import ClassesSection from "./classes/ClassesSection";
-import MembershipSection from "./membership/MembershipSection";
 import WellnessSection from "./wellness/WellnessSection";
 import AboutSection from "./about/AboutSection";
 import ContactSection from "./contact/ContactSection";
@@ -11,15 +10,12 @@ import Footer from "./footer/Footer";
 interface HomePageProps {
   onJoinClick?: () => void;
   onTrialClick?: () => void;
-  onPlanSelect?: (planTitle: string) => void;
   onBookClass?: (classTitle: string) => void;
 }
 
 const HomePage = ({
   onJoinClick = () => console.log("Join clicked"),
   onTrialClick = () => console.log("Trial clicked"),
-  onPlanSelect = (planTitle: string) =>
-    console.log(`Selected plan: ${planTitle}`),
   onBookClass = (classTitle: string) =>
     console.log(`Booked class: ${classTitle}`),
 }: HomePageProps) => {
@@ -30,7 +26,6 @@ const HomePage = ({
         <HeroSection onCtaClick={onTrialClick} />
         <ClassesSection onBookClass={onBookClass} />
         <WellnessSection />
-        <MembershipSection onPlanSelect={onPlanSelect} />
         <AboutSection />
         <ContactSection />
       </main>

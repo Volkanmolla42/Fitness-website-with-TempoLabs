@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
+import { Sparkles } from "lucide-react";
 
 interface HeroSectionProps {
-  videoUrl?: string;
   headline?: string;
   subheadline?: string;
   ctaText?: string;
@@ -10,63 +10,63 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({
-  videoUrl = "https://player.vimeo.com/external/459848489.sd.mp4?s=c9a8d51f5c38c048d2e19403a46a504c9805ad5c&profile_id=164&oauth2_token_id=57447761",
-  headline = "Gücünüzü Besleyin",
-  subheadline = "Sağlık ve güçlenme merkezimize hoş geldiniz",
-  ctaText = "Yolculuğa Başlayın",
+  headline = "Güçlü, Fit ve Özgür",
+  subheadline = "Loca Fit Studio'da kendi dönüşüm yolculuğunuza başlayın",
+  ctaText = "Ücretsiz Deneme Dersi",
   onCtaClick = () => console.log("CTA clicked"),
 }: HeroSectionProps) => {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
-  useEffect(() => {
-    const video = document.querySelector("video");
-    if (video) {
-      video.addEventListener("loadeddata", () => setIsVideoLoaded(true));
-    }
-    return () => {
-      if (video) {
-        video.removeEventListener("loadeddata", () => setIsVideoLoaded(true));
-      }
-    };
-  }, []);
-
   return (
-    <div className="relative w-full h-[800px] bg-pink-100 overflow-hidden">
-      {/* Video Background */}
+    <div className="relative w-full h-screen overflow-hidden">
+      {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className={`object-cover w-full h-full transition-opacity duration-1000 ${isVideoLoaded ? "opacity-40" : "opacity-0"}`}
-        >
-          <source src={videoUrl} type="video/mp4" />
-        </video>
+        <img
+          src="https://images.unsplash.com/photo-1593476123561-9516f2097158?q=80&w=2940&auto=format&fit=crop"
+          alt="Background"
+          className="object-cover w-full h-full scale-105 animate-slow-zoom"
+        />
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30" />
+      </div>
+
+      {/* Animated Shapes */}
+      <div className="absolute inset-0 overflow-hidden mix-blend-soft-light">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-pink-500/20 rounded-full animate-float delay-100" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-pink-500/20 rounded-full animate-float delay-300" />
+        <div className="absolute top-40 right-20 w-24 h-24 bg-pink-500/20 rounded-full animate-float delay-500" />
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-4 text-center">
-        <h1 className="mb-6 text-4xl font-light text-pink-950 md:text-6xl lg:text-7xl animate-fade-in tracking-wide">
-          {headline}
-        </h1>
-        <p className="max-w-2xl mb-8 text-lg text-pink-800 md:text-xl font-light">
-          {subheadline}
-        </p>
-        <Button
-          onClick={onCtaClick}
-          className="px-8 py-6 text-lg font-light text-white transition-all duration-300
-            bg-pink-700 hover:bg-pink-800
-            shadow-[0_0_20px_rgba(219,39,119,0.3)]
-            hover:shadow-[0_0_30px_rgba(219,39,119,0.4)]
-            rounded-full"
-        >
-          {ctaText}
-        </Button>
+      <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 md:px-16 lg:px-24 max-w-7xl mx-auto">
+        <div className="w-full md:w-2/3 lg:w-1/2 space-y-6">
+          <h1 className="text-4xl font-light md:text-6xl lg:text-7xl tracking-wide text-white animate-fade-in">
+            {headline}
+          </h1>
+          <p className="text-lg text-white/90 md:text-xl font-light max-w-xl animate-fade-in-delay">
+            {subheadline}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
+            <Button
+              onClick={onCtaClick}
+              className="group px-8 py-6 text-lg font-light text-white 
+                bg-pink-600 hover:bg-pink-700 hover:scale-105 hover:shadow-xl
+                rounded-full animate-pulse-pink transition-all duration-300"
+            >
+              <Sparkles className="w-5 h-5 mr-2 transition-transform group-hover:rotate-12" />
+              {ctaText}
+            </Button>
+            <Button
+              variant="outline"
+              className="px-8 py-6 text-lg font-light text-white border-white/30 
+                hover:bg-white/10 hover:border-white transition-all duration-300"
+            >
+              Program Detayları
+            </Button>
+          </div>
+        </div>
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-pink-100/70 via-pink-50/50 to-pink-100/70" />
+      {/* Bottom Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/50 to-transparent" />
     </div>
   );
 };

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import BookingModal from "./BookingModal";
 
 export interface ClassInfo {
   title: string;
@@ -30,44 +31,61 @@ const ClassCard = ({
   time = "09:00",
   onBookClass = () => console.log("Book class clicked"),
 }: ClassCardProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <Card className="w-[300px] overflow-hidden group hover:shadow-lg transition-all duration-300 border-pink-100">
-      <div className="relative h-[200px] overflow-hidden">
-        <img
-          src={imageUrl}
-          alt={title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-pink-950/50 to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4 text-white">
-          <p className="text-sm font-light">{time}</p>
-          <p className="text-lg font-light">{duration}</p>
-        </div>
-      </div>
-      <CardHeader>
-        <CardTitle className="text-xl font-light text-pink-900">
-          {title}
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          <div className="space-y-1">
-            <p className="text-pink-700 font-light">Eğitmen: {instructor}</p>
-            <p className="text-sm text-pink-600 font-light">
-              {levelTranslations[level]}
-            </p>
+    <>
+      <Card className="w-full overflow-hidden group hover:shadow-lg transition-all duration-500 hover:scale-105 border-pink-100">
+        <div className="relative h-[200px] overflow-hidden">
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-pink-950/50 to-transparent transition-colors duration-500" />
+          <div className="absolute bottom-4 left-4 right-4 text-white">
+            <p className="text-sm font-light">{time}</p>
+            <p className="text-lg font-light">{duration}</p>
           </div>
-          <Button
-            onClick={onBookClass}
-            className="w-full bg-pink-700 hover:bg-pink-800 text-white font-light
-              shadow-[0_0_15px_rgba(219,39,119,0.3)] transition-all duration-300
-              hover:shadow-[0_0_20px_rgba(219,39,119,0.4)]"
-          >
-            Rezervasyon Yap
-          </Button>
         </div>
-      </CardContent>
-    </Card>
+        <CardHeader>
+          <CardTitle className="text-xl font-light text-pink-700">
+            {title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="space-y-1">
+              <p className="text-pink-600 font-light">Eğitmen: {instructor}</p>
+              <p className="text-sm text-pink-500 font-light">
+                {levelTranslations[level]}
+              </p>
+            </div>
+            <Button
+              onClick={() => setIsModalOpen(true)}
+              className="w-full bg-pink-600 hover:bg-pink-700 text-white font-light
+                transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              Rezervasyon Yap
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <BookingModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={() => {
+          onBookClass();
+          setIsModalOpen(false);
+        }}
+        title={title}
+        instructor={instructor}
+        duration={duration}
+        time={time}
+        level={level}
+      />
+    </>
   );
 };
 

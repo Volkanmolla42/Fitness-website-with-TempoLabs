@@ -40,15 +40,16 @@ const MembershipCard = ({
 }: MembershipCardProps) => {
   return (
     <Card
-      className={`w-[350px] h-[500px] backdrop-blur-lg border border-pink-200 bg-white/95 transform transition-all duration-300 hover:scale-105 ${
-        highlighted ? "ring-2 ring-pink-400 shadow-lg shadow-pink-300/20" : ""
-      }`}
+      className={`w-[350px] h-[500px] backdrop-blur-lg border border-pink-200 bg-white/95 
+        transform transition-all duration-500 hover:scale-105 hover:shadow-2xl
+        ${highlighted ? "ring-2 ring-pink-400 shadow-lg shadow-pink-300/20 animate-pulse-pink" : ""}
+        group`}
     >
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl font-light text-pink-900">
+        <CardTitle className="text-2xl font-light text-pink-700">
           {title}
         </CardTitle>
-        <CardDescription className="text-pink-700">
+        <CardDescription className="text-pink-600">
           {description}
         </CardDescription>
         <div className="mt-4">
@@ -60,7 +61,7 @@ const MembershipCard = ({
         {features.map((feature, index) => (
           <div key={index} className="flex items-center space-x-3">
             <Check
-              className={`w-5 h-5 ${feature.included ? "text-pink-700" : "text-pink-300"}`}
+              className={`w-5 h-5 ${feature.included ? "text-pink-600" : "text-pink-300"}`}
             />
             <span
               className={`${feature.included ? "text-pink-900" : "text-pink-400"} font-light`}
@@ -73,9 +74,8 @@ const MembershipCard = ({
       <CardFooter className="flex justify-center">
         <Button
           onClick={onSelect}
-          className="w-full bg-pink-700 hover:bg-pink-800 text-white font-light
-            shadow-[0_0_15px_rgba(219,39,119,0.3)] transition-all duration-300
-            hover:shadow-[0_0_20px_rgba(219,39,119,0.4)]"
+          className="w-full bg-pink-600 hover:bg-pink-700 text-white font-light
+            transition-all duration-300 hover:scale-105 hover:shadow-xl"
         >
           Paketi Seç
         </Button>

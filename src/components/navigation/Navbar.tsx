@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, Flower2 } from "lucide-react";
+import { Link } from "react-scroll";
 
 interface NavbarProps {
   logo?: string;
@@ -26,29 +27,11 @@ const Navbar = ({
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      // Update active menu item based on scroll position
-      const sections = menuItems.map((item) => item.href.slice(1));
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        if (section) {
-          const element = document.getElementById(section);
-          if (element) {
-            const top = element.offsetTop;
-            const height = element.offsetHeight;
-            if (scrollPosition >= top && scrollPosition < top + height) {
-              setActiveItem(`#${section}`);
-              break;
-            }
-          }
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuItems]);
+  }, []);
 
   return (
     <nav
@@ -65,18 +48,41 @@ const Navbar = ({
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">
             {menuItems.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                className={`px-4 py-2 rounded-full text-sm transition-all duration-300
-                  ${
-                    activeItem === item.href
-                      ? "text-white bg-pink-500 font-medium shadow-md shadow-pink-200"
-                      : `${isScrolled ? "text-pink-600" : "text-pink-600"} hover:bg-pink-50 font-light`
-                  }`}
-              >
-                {item.label}
-              </a>
+              item.href === "#" ? (
+                <a
+                  key={index}
+                  href={item.href}
+                  className={`px-4 py-2 rounded-full text-sm transition-all duration-300 cursor-pointer
+                    ${
+                      activeItem === item.href
+                        ? "text-white bg-pink-500 font-medium shadow-md shadow-pink-200"
+                        : `${isScrolled ? "text-pink-600" : "text-pink-600"} hover:bg-pink-50 font-light`
+                    }`}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={index}
+                  to={item.href.replace("#", "")}
+                  spy={true}
+                  smooth={true}
+                  offset={-80}
+                  duration={500}
+                  className={`px-4 py-2 rounded-full text-sm transition-all duration-300 cursor-pointer
+                    ${
+                      activeItem === item.href
+                        ? "text-white bg-pink-500 font-medium shadow-md shadow-pink-200"
+                        : `${isScrolled ? "text-pink-600" : "text-pink-600"} hover:bg-pink-50 font-light`
+                    }`}
+                  onClick={() => {
+                    setActiveItem(item.href);
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
             <Button
               onClick={onJoinClick}
@@ -106,18 +112,41 @@ const Navbar = ({
           <div className="md:hidden absolute top-[64px] left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg border-t border-pink-100">
             <div className="flex flex-col p-4 space-y-2">
               {menuItems.map((item, index) => (
-                <a
-                  key={index}
-                  href={item.href}
-                  className={`px-4 py-3 rounded-lg text-sm transition-colors
-                    ${
-                      activeItem === item.href
-                        ? "text-white bg-pink-500 font-medium shadow-md shadow-pink-200"
-                        : "text-pink-600 hover:bg-pink-50 font-light"
-                    }`}
-                >
-                  {item.label}
-                </a>
+                item.href === "#" ? (
+                  <a
+                    key={index}
+                    href={item.href}
+                    className={`px-4 py-3 rounded-lg text-sm transition-colors cursor-pointer
+                      ${
+                        activeItem === item.href
+                          ? "text-white bg-pink-500 font-medium shadow-md shadow-pink-200"
+                          : "text-pink-600 hover:bg-pink-50 font-light"
+                      }`}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={index}
+                    to={item.href.replace("#", "")}
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                    duration={500}
+                    className={`px-4 py-3 rounded-lg text-sm transition-colors cursor-pointer
+                      ${
+                        activeItem === item.href
+                          ? "text-white bg-pink-500 font-medium shadow-md shadow-pink-200"
+                          : "text-pink-600 hover:bg-pink-50 font-light"
+                      }`}
+                    onClick={() => {
+                      setActiveItem(item.href);
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    {item.label}
+                  </Link>
+                )
               ))}
               <Button
                 onClick={onJoinClick}

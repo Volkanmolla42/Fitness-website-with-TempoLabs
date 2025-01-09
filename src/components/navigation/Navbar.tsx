@@ -9,7 +9,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({
-  logo = "Lotus Fit",
+  logo = "Loca Fit Studio",
   menuItems = [
     { label: "Ana Sayfa", href: "#" },
     { label: "Dersler", href: "#classes" },
@@ -72,7 +72,7 @@ const Navbar = ({
                   ${
                     activeItem === item.href
                       ? "text-white bg-pink-500 font-medium shadow-md shadow-pink-200"
-                      : `${isScrolled ? "text-pink-600" : "text-white"} hover:bg-pink-50 font-light`
+                      : `${isScrolled ? "text-pink-600" : "text-pink-600"} hover:bg-pink-50 font-light`
                   }`}
               >
                 {item.label}

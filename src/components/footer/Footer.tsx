@@ -8,9 +8,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-light">Serenity</h3>
+            <h3 className="text-2xl font-light">Loca Fit Studio</h3>
             <p className="text-pink-200 font-light">
-              Your sanctuary for wellness and empowerment
+              Sağlık ve güçlenme için sığınağınız
             </p>
             <div className="flex space-x-4">
               <a
@@ -36,14 +36,14 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-light mb-4">Quick Links</h4>
+            <h4 className="text-lg font-light mb-4">Hızlı Bağlantılar</h4>
             <ul className="space-y-2">
               <li>
                 <a
                   href="#"
                   className="text-pink-200 hover:text-pink-100 transition-colors font-light"
                 >
-                  Home
+                  Ana Sayfa
                 </a>
               </li>
               <li>
@@ -51,7 +51,7 @@ const Footer = () => {
                   href="#about"
                   className="text-pink-200 hover:text-pink-100 transition-colors font-light"
                 >
-                  About
+                  Hakkında
                 </a>
               </li>
               <li>
@@ -59,7 +59,7 @@ const Footer = () => {
                   href="#classes"
                   className="text-pink-200 hover:text-pink-100 transition-colors font-light"
                 >
-                  Classes
+                  Sınıflar
                 </a>
               </li>
               <li>
@@ -67,7 +67,7 @@ const Footer = () => {
                   href="#contact"
                   className="text-pink-200 hover:text-pink-100 transition-colors font-light"
                 >
-                  Contact
+                  İletişim
                 </a>
               </li>
             </ul>
@@ -75,14 +75,14 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-light mb-4">Services</h4>
+            <h4 className="text-lg font-light mb-4">Hizmetler</h4>
             <ul className="space-y-2">
               <li>
                 <a
                   href="#"
                   className="text-pink-200 hover:text-pink-100 transition-colors font-light"
                 >
-                  Fitness Classes
+                  Fitness Dersleri
                 </a>
               </li>
               <li>
@@ -90,7 +90,7 @@ const Footer = () => {
                   href="#"
                   className="text-pink-200 hover:text-pink-100 transition-colors font-light"
                 >
-                  Spa Services
+                  Spa Hizmetleri
                 </a>
               </li>
               <li>
@@ -98,7 +98,7 @@ const Footer = () => {
                   href="#"
                   className="text-pink-200 hover:text-pink-100 transition-colors font-light"
                 >
-                  Wellness Programs
+                  Sağlık Programları
                 </a>
               </li>
               <li>
@@ -106,7 +106,7 @@ const Footer = () => {
                   href="#"
                   className="text-pink-200 hover:text-pink-100 transition-colors font-light"
                 >
-                  Personal Training
+                  Kişisel Antrenman
                 </a>
               </li>
             </ul>
@@ -114,11 +114,11 @@ const Footer = () => {
 
           {/* Hours */}
           <div>
-            <h4 className="text-lg font-light mb-4">Hours</h4>
+            <h4 className="text-lg font-light mb-4">Çalışma Saatleri</h4>
             <ul className="space-y-2 text-pink-200 font-light">
-              <li>Monday - Friday</li>
+              <li>Pazartesi - Cuma</li>
               <li>6:00 AM - 10:00 PM</li>
-              <li>Saturday - Sunday</li>
+              <li>Cumartesi - Pazar</li>
               <li>8:00 AM - 8:00 PM</li>
             </ul>
           </div>
@@ -126,7 +126,7 @@ const Footer = () => {
 
         <div className="border-t border-pink-800 mt-12 pt-8 text-center">
           <p className="text-pink-200 font-light">
-            © {new Date().getFullYear()} Serenity. All rights reserved.
+            {new Date().getFullYear()} Loca Fit Studio. Tüm hakları saklıdır.
           </p>
         </div>
       </div>

@@ -35,7 +35,11 @@ const classes = [
   }
 ]
 
-const ClassesSection = () => {
+interface ClassesSectionProps {
+  onBookClass: (classTitle: string) => void;
+}
+
+const ClassesSection = ({ onBookClass }: ClassesSectionProps) => {
   const sectionRef = useRef(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
 
@@ -117,7 +121,7 @@ const ClassesSection = () => {
               <p className="text-gray-600 mb-4">
                 {classItem.description}
               </p>
-              <div className="flex items-center text-purple-500">
+              <div className="flex items-center text-purple-500 mb-4">
                 <svg
                   className="w-5 h-5 mr-2"
                   fill="none"
@@ -133,6 +137,12 @@ const ClassesSection = () => {
                 </svg>
                 <span className="font-medium">{classItem.schedule}</span>
               </div>
+              <button
+                onClick={() => onBookClass(classItem.title)}
+                className="w-full bg-pink-600 text-white py-2 px-4 rounded-lg hover:bg-pink-700 transition-colors duration-300"
+              >
+                Book Now
+              </button>
             </div>
           ))}
         </div>
